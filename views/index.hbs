@@ -1,0 +1,18 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+<script src="https://cdn.auth0.com/js/lock/10.2/lock.min.js"></script>
+<script type="text/javascript">
+  var lock = new Auth0Lock('37EId2ZvkTLApPIGRNWERZxyx4Q7OY5q', 'oswaldosalazar.auth0.com', {
+    auth: {
+      redirectUrl: 'http://localhost:3000/callback',
+      responseType: 'code',
+      params: {
+        scope: 'openid email' // Learn about scopes: https://auth0.com/docs/scopes
+      }
+    }
+  });
+  function signin(){
+      lock.show()
+  }
+</script>
+<button onclick="signin()">Login</button>
