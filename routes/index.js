@@ -11,7 +11,7 @@ var env = {
 }
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', env: env });
+  res.render('index', { title: "Captain's Log", env: env });
 });
 
 router.get('/login', function(req, res){
