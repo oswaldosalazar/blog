@@ -1,4 +1,29 @@
-<img src="{{user.picture}}" alt="User Picture" />
-<h2>Welcome back Captain {{user.nickname}}</h2>
-<br>
-<a href="/logout">Logout</a>
+<div class="userGreeting">
+    <img src="{{user.picture}}" alt="User Picture" />
+    <h5>Welcome back Captain {{user.nickname}}</h5>
+</div>
+
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <a href="/logout" id="logButton" href="#" class="btn btn-default btn-lg">Log Out</a>
+</div>
+
+<div class="blogPost">
+    <form class="form-horizontal">
+  <fieldset>
+    <legend>Log Entry</legend>
+    <div class="form-group">
+      <!-- <label for="textArea" class="col-lg-2 control-label">Textarea</label> -->
+      <div class="col-lg-10">
+        <textarea class="form-control" rows="3" id="textArea"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+</div>

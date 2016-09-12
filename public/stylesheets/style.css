@@ -1,11 +1,26 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Console", Helvetica, Arial, sans-serif;
-  color: white;
-  background-size: cover;
-  background-image: url('http://www.pixelstalk.net/wp-content/uploads/2016/04/Star-trek-logo-desktop-background.png');
+    background-size:cover;
+    background-position:top;
+    background-repeat: no-repeat;
+    background-image: url('../images/star-trek-logo-desktop-background.png');
 }
 
-a {
-  color: #00B7FF;
+.navbar-fixed-top {
+    display: flex;
+    justify-content:center;
+}
+
+#logButton {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.userGreeting {
+    padding-top: 100px;
+    padding-left: 50px;
+}
+
+.blogPost {
+    padding: 50px;
 }
