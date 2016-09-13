@@ -12,7 +12,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session')
 
 var routes = require('./routes/index');
-var users = require('./routes/user');
+var users = require('./routes/users');
 
 var app = express();
 
@@ -37,7 +37,8 @@ app.use(passport.session())
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/user', users);
+app.use('/users', users);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -54,12 +55,6 @@ app.get('/callback',
         }
         res.redirect('/user')
     })
-
-app.get('/user', function (req, res) {
-    res.render('user', {
-        user: req.user
-    })
-})
 
 // error handlers
 

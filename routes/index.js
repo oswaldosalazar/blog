@@ -11,7 +11,7 @@ var env = {
 }
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: "Captain's Log", env: env });
+  res.render('index', { title: 'Blog', env: env });
 });
 
 router.get('/login', function(req, res){
@@ -26,7 +26,7 @@ router.get('/logout', function(req, res) {
 router.get('/callback',
     passport.authenticate('auth0', {failureRedirect: 'http://localhost:3000/callback'}),
     function(req, res) {
-        res.redirect(req.session.returnTo || '/user')
+        res.redirect(req.session.returnTo || '/users')
     })
 
 module.exports = router;
