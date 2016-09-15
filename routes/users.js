@@ -8,7 +8,6 @@ var queries = require("../database/queries")
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    // var exists = false
     var userName = req.user.nickname
 
     queries.Users({username: req.user.nickname})
@@ -16,7 +15,6 @@ router.get('/', function(req, res, next) {
             res.render('users', { title: 'Blog', user: req.user})
         })
     console.log('User: ' + userName)
-
 });
 
 router.post('/submit', function(req, res, next) {
@@ -26,27 +24,33 @@ router.post('/submit', function(req, res, next) {
     var dt = datetime.create(Date.now())
     var postDate = dt.format('Y-m-d H:M')
     var users = req.user.nickname
+    var userId = 0
     console.log('Title: ',postTitle)
     console.log('Entry: ', postEntry)
     console.log('User: ', postUser)
     console.log('Date: ', postDate)
-    queries.Posts({
-        title: postTitle,
-        body: postEntry,
-        author_id: users.uid,
-        postDate: postDate
-    })
+    // console.log(users.uid)
+
+    queries.User_Id({username: req.user.nickname})
+        .then(function(data){
+            console.log(data[0].uid)
+            return queries.Posts({
+                title: postTitle,
+                body: postEntry,
+                author_id: data[0].uid,
+                postDate: postDate
+            })
+        })
     .then(function(){
-        res.redirect('/users/' + postTitle)
+        res.redirect('/users/posts')
         console.log("Hello")
     })
     .catch(function(err) {
         next(err)
     })
-
 })
 
-router.get('/:postTitle', function(req, res, next) {
+router.get('/posts', function(req, res, next) {
     res.render('post', {
         postTitle: req.params.postTitle
     })
