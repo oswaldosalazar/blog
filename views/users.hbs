@@ -5,9 +5,6 @@
     <h5>Welcome back {{user.nickname}}</h5>
 </div>
 
-<div class="navbar navbar-default navbar-fixed-bottom">
-    <a href="/logout" id="logButton" href="#" class="btn btn-default btn-lg">Log Out</a>
-</div>
 
 <div class="blogPost">
     <form action="/users/submit" method="post" class="form-horizontal">
@@ -36,13 +33,6 @@
     </form>
 </div>
 
-<!-- <script type="text/javascript">
-    function sendPost() {
-        router.post('/', function(req, res){
-            var postTitle = req.body.postTitle
-            //  var postEntry = req.body.postEntry
-            console.log('Title: ' + postTitle)
-            //  console.log('Entry: ' + postEntry)
-        });
-    }
-</script> -->
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <a href="/logout" id="logButton" href="#" class="btn btn-default btn-lg">Log Out</a>
+</div>
