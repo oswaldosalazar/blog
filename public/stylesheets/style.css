@@ -1,8 +1,8 @@
 body {
-    background-size:contain;
+    background-size:auto;
     background-position:top;
     background-repeat: no-repeat;
-    background-image: url('../images/star-trek-logo-desktop-background.png');
+    /*background-image: url('../images/star-trek-logo-desktop-background.png');*/
 }
 
 .navbar-fixed-top {
