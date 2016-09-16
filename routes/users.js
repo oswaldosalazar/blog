@@ -49,17 +49,46 @@ router.post('/submit', function(req, res, next) {
 })
 
 router.get('/posts', function(req, res, next) {
+    var postUser = req.user.nickname
     queries.AllPosts()//.orderBy('id','desc')
         .then(function(posts) {
-            console.log('All posts: ', posts)
+            // console.log('All posts: ', posts)
             res.render('post', {
                 posts: posts
             })
         })
+})
 
-    // res.render('post', {
-    //     title: 'Welcome to Express'
-    // })
+router.post('/posts', function(req, res, next) {
+    var commentEntry = req.body.commentEntry
+    var dt = datetime.create(Date.now())
+    var postDate = dt.format('Y-m-d H:M')
+    console.log('Comment: ',commentEntry)
+    console.log(req.body.id)
+    console.log('Date: ', postDate)
+
+    queries.User_Id({username: req.user.nickname})
+        .then(function(data) {
+            console.log(data[0].uid)
+            // return queries.Post_Id({ id: id
+            //
+            // })
+            return queries.Comments({
+                body: commentEntry,
+                post_id: req.body.postId,
+                author_id: data[0].uid,
+                postDate: postDate
+            })
+
+        })
+        .then(function(data) {
+            res.redirect('/users/posts')
+            console.log("Hello")
+        })
+        .catch(function(err) {
+            next(err)
+        })
+
 
 })
 
