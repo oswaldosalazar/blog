@@ -1,5 +1,5 @@
 body {
-    background-size:cover;
+    background-size:contain;
     background-position:top;
     background-repeat: no-repeat;
     background-image: url('../images/star-trek-logo-desktop-background.png');
@@ -23,4 +23,9 @@ body {
 
 .blogPost {
     padding: 50px;
+}
+
+.post {
+    padding-top: 20px;
+    padding-left: 20px;
 }

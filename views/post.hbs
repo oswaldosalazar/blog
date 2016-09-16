@@ -1,10 +1,13 @@
 <div class="blogPost">
-    <h1>{{title}}</h1>
-    <h2>{{title}}</h2>
-    <h2>{{postTitle}}</h2>
-    <p>
-        {{postEntry}}
-    </p>
+
+    {{#each posts}}
+        <div class="post">
+            <h5>{{title}}</h5>
+            <h6>{{body}}</h6>
+            <p>by Capt. {{username}} on {{postDate}}</p>
+        </div>
+
+    {{/each}}
 </div>
 
 <div class="navbar navbar-default navbar-fixed-bottom">

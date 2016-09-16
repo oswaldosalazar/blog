@@ -21,7 +21,7 @@ module.exports = {
         return knex('posts').insert(data)
     },
     AllPosts: function(data) {
-        return knex('posts')
+        return knex('posts').leftJoin('users', 'uid', 'author_id')
     },
     Comments: function() {
         return knex('comments')

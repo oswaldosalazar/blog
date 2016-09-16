@@ -23,16 +23,14 @@ router.post('/submit', function(req, res, next) {
     var postUser = req.user.nickname
     var dt = datetime.create(Date.now())
     var postDate = dt.format('Y-m-d H:M')
-    var users = req.user.nickname
-    var userId = 0
+
     console.log('Title: ',postTitle)
     console.log('Entry: ', postEntry)
     console.log('User: ', postUser)
     console.log('Date: ', postDate)
-    // console.log(users.uid)
 
     queries.User_Id({username: req.user.nickname})
-        .then(function(data){
+        .then(function(data) {
             console.log(data[0].uid)
             return queries.Posts({
                 title: postTitle,
@@ -41,19 +39,28 @@ router.post('/submit', function(req, res, next) {
                 postDate: postDate
             })
         })
-    .then(function(){
-        res.redirect('/users/posts')
-        console.log("Hello")
-    })
-    .catch(function(err) {
-        next(err)
-    })
+        .then(function(data) {
+            res.redirect('/users/posts')
+            console.log("Hello")
+        })
+        .catch(function(err) {
+            next(err)
+        })
 })
 
 router.get('/posts', function(req, res, next) {
-    res.render('post', {
-        postTitle: req.params.postTitle
-    })
+    queries.AllPosts()//.orderBy('id','desc')
+        .then(function(posts) {
+            console.log('All posts: ', posts)
+            res.render('post', {
+                posts: posts
+            })
+        })
+
+    // res.render('post', {
+    //     title: 'Welcome to Express'
+    // })
+
 })
 
 module.exports = router;
