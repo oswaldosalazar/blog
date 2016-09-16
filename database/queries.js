@@ -21,10 +21,13 @@ module.exports = {
     AllPosts: function(data) {
         return knex('posts').leftJoin('users', 'uid', 'author_id')
     },
-    Post_Id: function(data) {
-        return knex('posts').where('post_id', data)
+    AllComments: function(data) {
+        return knex('comments')
     },
     Comments: function(data) {
         return knex('comments').insert(data)
+    },
+    CommentsById: function(data) {
+        return knex('comments').where('post_id', data)
     }
 }

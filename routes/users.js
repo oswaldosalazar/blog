@@ -34,7 +34,7 @@ router.post('/submit', function(req, res, next) {
             console.log(data[0].uid)
             return queries.Posts({
                 title: postTitle,
-                body: postEntry,
+                post_body: postEntry,
                 author_id: data[0].uid,
                 postDate: postDate
             })
@@ -52,11 +52,23 @@ router.get('/posts', function(req, res, next) {
     var postUser = req.user.nickname
     queries.AllPosts()//.orderBy('id','desc')
         .then(function(posts) {
-            // console.log('All posts: ', posts)
-            res.render('post', {
-                posts: posts
+            queries.AllComments()
+            .then(function(data) {
+                var post_id = data[0].post_id
+                console.log(data)
+                // console.log(data[0].uid)
+                return queries.CommentsById(post_id)
+                .then(function(comments) {
+                    res.render('post', {
+                        posts: posts
+                    })
+                })
+                .catch(function(err) {
+                    next(err)
+                })
             })
         })
+
 })
 
 router.post('/posts', function(req, res, next) {
@@ -64,32 +76,24 @@ router.post('/posts', function(req, res, next) {
     var dt = datetime.create(Date.now())
     var postDate = dt.format('Y-m-d H:M')
     console.log('Comment: ',commentEntry)
-    console.log(req.body.id)
     console.log('Date: ', postDate)
 
     queries.User_Id({username: req.user.nickname})
         .then(function(data) {
             console.log(data[0].uid)
-            // return queries.Post_Id({ id: id
-            //
-            // })
             return queries.Comments({
-                body: commentEntry,
+                comment_body: commentEntry,
                 post_id: req.body.postId,
                 author_id: data[0].uid,
                 postDate: postDate
             })
-
         })
         .then(function(data) {
             res.redirect('/users/posts')
-            console.log("Hello")
         })
         .catch(function(err) {
             next(err)
         })
-
-
 })
 
 module.exports = router;
