@@ -1,5 +1,10 @@
 <div class="blogPost">
     {{#each comments}}
-    <p>{{comment_body}}</p>
+        <div class="comment">
+            <p>{{comment_body}}</p>
+        </div>
     {{/each}}
+</div>
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <a href="/logout" id="logButton" href="#" class="btn btn-default btn-lg">Log Out</a>
 </div>

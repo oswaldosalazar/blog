@@ -1,8 +1,9 @@
-body {
-    background-size:auto;
-    background-position:top;
-    background-repeat: no-repeat;
-    /*background-image: url('../images/star-trek-logo-desktop-background.png');*/
+html {
+    background: url(../images/star-trek-logo-desktop-background.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .navbar-fixed-top {
@@ -31,5 +32,12 @@ body {
 }
 
 .postBody {
+    color: white;
+}
+
+.comment {
+    /*padding-top: 20px;
+    padding-left: 20px;*/
+    padding: 30px 200px 0 200px;
     color: white;
 }

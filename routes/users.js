@@ -51,22 +51,28 @@ router.post('/submit', function(req, res, next) {
 router.get('/posts', function(req, res, next) {
     queries.AllPosts()//.orderBy('id','desc')
         .then(function(posts) {
-            // queries.AllComments()
-            // .then(function(comments) {
-                // var post_id = comments[0].post_id
-                // console.log(comments)
-                // console.log(data[0].uid)
-                // return queries.CommentsById(post_id)
-                // .then(function(data) {
-                    // console.log(data)
-                    res.render('post', {
-                        posts: posts
-                    })
-                // })
-            // })
+            res.render('post', {
+                posts: posts
+            })
         })
         .catch(function(err) {
             next(err)
+        })
+
+})
+
+router.get('/post/:id', function(req, res, next) {
+    var id = req.params.id
+    // console.log(id)
+    queries.CommentsById(id)
+        .then(function(comments) {
+            console.log(comments)
+            res.render('comments', {
+                comments: comments
+            })
+        })
+        .catch(function(err) {
+        next(err)
         })
 
 })
