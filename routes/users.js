@@ -8,13 +8,13 @@ var queries = require("../database/queries")
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    var userName = req.user.nickname
+    // var userName = req.user.nickname
 
     queries.Users({username: req.user.nickname})
         .then(function(){
             res.render('users', { title: 'Blog', user: req.user})
         })
-    console.log('User: ' + userName)
+    // console.log('User: ' + userName)
 });
 
 router.post('/submit', function(req, res, next) {
@@ -49,24 +49,24 @@ router.post('/submit', function(req, res, next) {
 })
 
 router.get('/posts', function(req, res, next) {
-    var postUser = req.user.nickname
     queries.AllPosts()//.orderBy('id','desc')
         .then(function(posts) {
-            queries.AllComments()
-            .then(function(data) {
-                var post_id = data[0].post_id
-                console.log(data)
+            // queries.AllComments()
+            // .then(function(comments) {
+                // var post_id = comments[0].post_id
+                // console.log(comments)
                 // console.log(data[0].uid)
-                return queries.CommentsById(post_id)
-                .then(function(comments) {
+                // return queries.CommentsById(post_id)
+                // .then(function(data) {
+                    // console.log(data)
                     res.render('post', {
                         posts: posts
                     })
-                })
-                .catch(function(err) {
-                    next(err)
-                })
-            })
+                // })
+            // })
+        })
+        .catch(function(err) {
+            next(err)
         })
 
 })
@@ -80,7 +80,6 @@ router.post('/posts', function(req, res, next) {
 
     queries.User_Id({username: req.user.nickname})
         .then(function(data) {
-            console.log(data[0].uid)
             return queries.Comments({
                 comment_body: commentEntry,
                 post_id: req.body.postId,
