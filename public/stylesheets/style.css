@@ -1,4 +1,4 @@
-html {
+body {
     background: url(../images/star-trek-logo-desktop-background.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -23,6 +23,7 @@ html {
 }
 
 .blogPost {
+    background-image: none;
     padding: 50px;
 }
 

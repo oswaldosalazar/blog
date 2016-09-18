@@ -49,7 +49,7 @@ router.post('/submit', function(req, res, next) {
 })
 
 router.get('/posts', function(req, res, next) {
-    queries.AllPosts()//.orderBy('id','desc')
+    queries.AllPosts().orderBy('id','desc')
         .then(function(posts) {
             res.render('post', {
                 posts: posts
@@ -58,10 +58,9 @@ router.get('/posts', function(req, res, next) {
         .catch(function(err) {
             next(err)
         })
-
 })
 
-router.get('/post/:id', function(req, res, next) {
+router.get('/posts/:id', function(req, res, next) {
     var id = req.params.id
     // console.log(id)
     queries.CommentsById(id)
@@ -74,7 +73,6 @@ router.get('/post/:id', function(req, res, next) {
         .catch(function(err) {
         next(err)
         })
-
 })
 
 router.post('/posts', function(req, res, next) {
