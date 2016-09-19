@@ -1,8 +1,22 @@
 <div class="blogPost">
+    <div class="post">
+        <h5>Title: {{comments.[0].title}}</h5>
+        <div class="well" id="postWithComments">
+            <h6>Entry: "{{comments.[0].post_body}}"</h6>
+        </div>
+    </div>
+    <div class="post">
+        <h5>Comments:</h5>
+    </div>
     {{#each comments}}
         <div class="comment">
-            <p>{{comment_body}}</p>
+            <ul>
+                <li>{{comment_body}}</li>
+            </ul>
         </div>
+    {{else}}
+        <br>
+        <p class="empty">No comments on this log entry yet.</p>
     {{/each}}
 </div>
 <div class="navbar navbar-default navbar-fixed-bottom">

@@ -31,6 +31,6 @@ module.exports = {
         return knex('comments').insert(data)
     },
     CommentsById: function(data) {
-        return knex('comments').where('post_id', data)
+        return knex('comments').leftJoin('posts','posts.id', 'post_id').where('post_id', data)
     }
 }
