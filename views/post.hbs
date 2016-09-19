@@ -1,10 +1,8 @@
 <div class="blogPost">
     {{#each posts}}
-    <!-- action="/users/submit" method="post" -->
         <div class="post">
-            <h5>Post {{id}}</h5>
-            <h6>{{title}}</h6>
-            <p class="postBody">{{post_body}}</p>
+            <h5>Post {{id}}: {{title}}</h5>
+            <h6>{{post_body}}</h6>
             <p>by Capt. {{username}} on {{postDate}}</p>
             <a href="posts/{{id}}" class="btn btn-xs btn-default">See comments</a>
             <a href="#" class="btn btn-xs btn-default" data-toggle="modal" data-target="#basicModal{{id}}">Comment</a>

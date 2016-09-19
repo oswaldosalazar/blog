@@ -28,20 +28,10 @@ body {
 }
 
 .post {
-    padding: 20 0 20 20px;
-}
-
-.postBody {
-    color: white;
+    padding: 20px 0 20px 0px;
 }
 
 .comment {
-    /*padding-top: 20px;
-    padding-left: 20px;*/
     padding: 30px 200px 0 20px;
     color: white;
-}
-
-#postWithComments {
-    padding-top: 20px;
 }
