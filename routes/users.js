@@ -77,36 +77,33 @@ router.get('/posts/:id', function(req, res, next) {
 
 router.get('/posts/:id/edit', function(req, res, next) {
     var id = req.params.id
-    // var postUser = req.user.nickname
 
-    // console.log('Title: ',postTitle)
-    // console.log('Entry: ', postEntry)
-    // console.log('User: ', postUser)
-    // console.log('Date: ', postDate)
-    console.log('Post Id: ', id)
-
-    // queries.PostsById(id)
-    //     .then(function(posts) {
-    //         res.render('edit_post'), {
-    //             posts: posts
-    //         }
-    //         console.log(posts[0].post_body)
-    //         // return queries.Posts({
-    //         //     title: postTitle,
-    //         //     post_body: postEntry,
-    //         //     author_id: data[0].uid,
-    //         //     postDate: postDate
-    //         // })
-    //     })
-    //     .catch(function(err) {
-    //         next(err)
-    //     })
+    // console.log('Post Id: ', id)
     queries.PostsById(id)
         .then(function(posts) {
             console.log(posts)
             res.render('edit_post', {
                 posts: posts
             })
+        })
+        .catch(function(err) {
+        next(err)
+        })
+})
+
+router.post('/posts/:id/edit', function(req, res, next) {
+    var id = req.params.id
+    var postTitle = req.body.postTitle
+    var postEntry = req.body.postEntry
+
+    console.log('Post Id: ', typeof id)
+    queries.EditPost(id, {
+        title: postTitle,
+        post_body: postEntry,
+        })
+        .then(function(data) {
+            res.redirect('/users/posts')
+            console.log("Hello")
         })
         .catch(function(err) {
         next(err)

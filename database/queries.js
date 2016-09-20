@@ -18,11 +18,11 @@ module.exports = {
     Posts: function(data) {
         return knex('posts').insert(data)
     },
-    PostsById: function (data) {
+    PostsById: function(data) {
         return knex('posts').where('id', data)
     },
-    PostEdit: function (data) {
-        return knex('posts').update(data)
+    EditPost: function (id, data) {
+        return knex('posts').where('id', id).update(data)
     },
     AllPosts: function(data) {
         return knex('posts').leftJoin('users', 'uid', 'author_id')

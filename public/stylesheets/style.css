@@ -35,3 +35,14 @@ body {
     padding: 30px 200px 0 20px;
     color: white;
 }
+
+.bottom-align-text {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+
+.chatbox {
+    height: 180px;
+    overflow: scroll;
+}
