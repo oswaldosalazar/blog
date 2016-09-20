@@ -21,6 +21,9 @@ module.exports = {
     PostsById: function (data) {
         return knex('posts').where('id', data)
     },
+    PostEdit: function (data) {
+        return knex('posts').update(data)
+    },
     AllPosts: function(data) {
         return knex('posts').leftJoin('users', 'uid', 'author_id')
     },

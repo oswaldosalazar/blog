@@ -62,7 +62,7 @@ router.get('/posts', function(req, res, next) {
 
 router.get('/posts/:id', function(req, res, next) {
     var id = req.params.id
-    // console.log(id)
+
     queries.CommentsById(id)
         .then(function(comments) {
             console.log(comments)
@@ -72,6 +72,75 @@ router.get('/posts/:id', function(req, res, next) {
         })
         .catch(function(err) {
         next(err)
+        })
+})
+
+router.get('/posts/:id/edit', function(req, res, next) {
+    var id = req.params.id
+    // var postUser = req.user.nickname
+
+    // console.log('Title: ',postTitle)
+    // console.log('Entry: ', postEntry)
+    // console.log('User: ', postUser)
+    // console.log('Date: ', postDate)
+    console.log('Post Id: ', id)
+
+    // queries.PostsById(id)
+    //     .then(function(posts) {
+    //         res.render('edit_post'), {
+    //             posts: posts
+    //         }
+    //         console.log(posts[0].post_body)
+    //         // return queries.Posts({
+    //         //     title: postTitle,
+    //         //     post_body: postEntry,
+    //         //     author_id: data[0].uid,
+    //         //     postDate: postDate
+    //         // })
+    //     })
+    //     .catch(function(err) {
+    //         next(err)
+    //     })
+    queries.PostsById(id)
+        .then(function(posts) {
+            console.log(posts)
+            res.render('edit_post', {
+                posts: posts
+            })
+        })
+        .catch(function(err) {
+        next(err)
+        })
+})
+
+router.post('/submit', function(req, res, next) {
+    var postTitle = req.body.postTitle
+    var postEntry = req.body.postEntry
+    var postUser = req.user.nickname
+    var dt = datetime.create(Date.now())
+    var postDate = dt.format('Y-m-d H:M')
+
+    console.log('Title: ',postTitle)
+    console.log('Entry: ', postEntry)
+    console.log('User: ', postUser)
+    console.log('Date: ', postDate)
+
+    queries.User_Id({username: req.user.nickname})
+        .then(function(data) {
+            console.log(data[0].uid)
+            return queries.Posts({
+                title: postTitle,
+                post_body: postEntry,
+                author_id: data[0].uid,
+                postDate: postDate
+            })
+        })
+        .then(function(data) {
+            res.redirect('/users/posts')
+            console.log("Hello")
+        })
+        .catch(function(err) {
+            next(err)
         })
 })
 

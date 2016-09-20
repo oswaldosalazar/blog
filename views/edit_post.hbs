@@ -1,0 +1,37 @@
+<!-- <title>{{title}}</title> -->
+
+<div class="userGreeting">
+    <!-- <img src="{{user.picture}}" alt="User Picture" /> -->
+    <h5>{{user.nickname}} Enter changes on post {{posts.[0].id}}</h5>
+</div>
+
+<div class="blogPost">
+    <form action="/users/submit" method="get" class="form-horizontal">
+        <fieldset>
+            <legend>Log Entry</legend>
+            <div class="form-group">
+                <label for="postTitle" class="col-lg-2 control-label">Title</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputPostTitle" value="{{posts.[0].title}}" name="postTitle">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="textArea" class="col-lg-2 control-label">Entry</label>
+                <div class="col-lg-10">
+                    <textarea class="form-control" rows="3" id="textArea" name="postEntry">{{posts.[0].post_body}}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button formaction="/users/posts" class="btn btn-default">See existing entries</button>
+
+                    <button type="submit" class="btn btn-primary">Submit changes</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <a href="/logout" id="logButton" href="#" class="btn btn-default btn-lg">Log Out</a>
+</div>
