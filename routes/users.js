@@ -63,9 +63,9 @@ router.get('/posts', function(req, res, next) {
 router.get('/posts/:id', function(req, res, next) {
     var id = req.params.id
 
-    queries.CommentsById(id)
+    queries.CommentsByPostId(id)
         .then(function(comments) {
-            console.log(comments)
+            // console.log(comments)
             res.render('comments', {
                 comments: comments
             })
@@ -81,7 +81,7 @@ router.get('/posts/:id/edit', function(req, res, next) {
     // console.log('Post Id: ', id)
     queries.PostsById(id)
         .then(function(posts) {
-            console.log(posts)
+            // console.log(posts)
             res.render('edit_post', {
                 posts: posts
             })
@@ -96,7 +96,7 @@ router.post('/posts/:id/edit', function(req, res, next) {
     var postTitle = req.body.postTitle
     var postEntry = req.body.postEntry
 
-    console.log('Post Id: ', typeof id)
+    // console.log('Post Id: ', typeof id)
     queries.EditPost(id, {
         title: postTitle,
         post_body: postEntry,
@@ -104,6 +104,22 @@ router.post('/posts/:id/edit', function(req, res, next) {
         .then(function(data) {
             res.redirect('/users/posts')
             console.log("Hello")
+        })
+        .catch(function(err) {
+        next(err)
+        })
+})
+
+router.get('/posts/comments/:id', function(req, res, next) {
+    var id = req.params.id
+
+    console.log('Comment Id or post Id?: ', id)
+    queries.CommentsById(id)
+        .then(function(comments) {
+            console.log("No comments?")
+            res.render('edit_post', {
+                comments: comments
+            })
         })
         .catch(function(err) {
         next(err)
