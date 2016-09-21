@@ -46,3 +46,9 @@ body {
     height: 180px;
     overflow: scroll;
 }
+
+.modalPostion {
+    top:10%;
+    /*right:50%;*/
+    /*outline: none;*/
+}

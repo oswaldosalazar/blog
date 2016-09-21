@@ -20,28 +20,12 @@
     {{/each}}
 </div>
 
-<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<div class="modal fade modalPostion" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-content">
         <div class="modal-header">
             <h6 class="modal-title" id="myModalLabel">Comment on Post {{id}}</h6>
         </div>
-        <div class="modal-body">
-            <form action="/users/posts" method="post" class="form-horizontal">
-                <fieldset>
-                    <div class="form-group">
-                        <label for="textArea" class="col-lg-2 control-label">Comment</label>
-                        <div class="col-lg-10">
-                            <textarea class="form-control" rows="3" id="textArea" name="commentEntry"></textarea>
-                            <input value="{{id}}" type="hidden" name="postId"></input>
-                        </div>
-                    </div>
-                    <div class="form-group modal-footer">
-                        <button type="button" class="btn btn-xs" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-xs">Save</button>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
+<!-- modal.hbs here -->
     </div>
 </div>
 <div class="navbar navbar-default navbar-fixed-bottom">

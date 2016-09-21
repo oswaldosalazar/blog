@@ -117,8 +117,8 @@ router.get('/posts/comments/:id', function(req, res, next) {
     queries.CommentsById(id)
         .then(function(comments) {
             console.log("No comments?")
-            res.render('edit_post', {
-                comments: comments
+            res.render('modal', {
+                // comments: comments
             })
         })
         .catch(function(err) {
