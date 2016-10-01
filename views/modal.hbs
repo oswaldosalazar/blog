@@ -8,7 +8,7 @@
                 <label for="textArea" class="col-lg-2 control-label">Comment</label>
                 <div class="col-lg-10">
                     <textarea class="form-control" rows="3" id="textArea" name="commentEntry"></textarea>
-                    <input value="{{id}}" type="hidden" name="postId"></input>
+                    <input value="{{id}}" type="hidden" name="postId">{{comments.[0].id}}</input>
                 </div>
             </div>
             <div class="form-group modal-footer">

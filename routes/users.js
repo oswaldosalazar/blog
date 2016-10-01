@@ -116,9 +116,9 @@ router.get('/posts/comments/:id', function(req, res, next) {
     console.log('Comment Id or post Id?: ', id)
     queries.CommentsById(id)
         .then(function(comments) {
-            console.log("No comments?")
+            console.log(comments)
             res.render('modal', {
-                // comments: comments
+                comments: comments
             })
         })
         .catch(function(err) {
