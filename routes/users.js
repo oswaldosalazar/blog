@@ -62,14 +62,18 @@ router.get('/posts', function(req, res, next) {
 
 router.get('/posts/:id', function(req, res, next) {
     var id = req.params.id
-
-    queries.CommentsByPostId(id)
-        .then(function(comments) {
-            // console.log(comments)
-            res.render('comments', {
-                comments: comments
-            })
+    queries.PostsById(id)
+    .then(function(posts){
+      console.log("Post"+ id, posts[0])
+      return queries.CommentsByPostId(id)
+      .then(function(comments) {
+        console.log(comments)
+        res.render('comments', {
+          posts: posts[0],
+          comments: comments
         })
+      })
+    })
         .catch(function(err) {
         next(err)
         })
