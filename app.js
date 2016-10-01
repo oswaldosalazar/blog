@@ -5,7 +5,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var passport = require('passport')
-
+var fs = require('fs');
+var hbs = require('hbs');
 var strategy = require('./setup-passport')
 
 var cookieParser = require('cookie-parser');
@@ -17,6 +18,11 @@ var users = require('./routes/users');
 var app = express();
 
 // view engine setup
+
+hbs.registerPartial('modal',
+    fs.readFileSync(__dirname + '/views/partials/modal.hbs', 'utf8'));
+hbs.registerPartials(__dirname + '/views/partials');
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 

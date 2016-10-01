@@ -65,7 +65,7 @@ router.get('/posts/:id', function(req, res, next) {
     queries.PostsById(id)
     .then(function(posts){
       console.log("Post"+ id, posts[0])
-      return queries.CommentsByPostId(id)
+      queries.CommentsByPostId(id)
       .then(function(comments) {
         console.log(comments)
         res.render('comments', {
