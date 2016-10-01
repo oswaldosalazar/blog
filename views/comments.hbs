@@ -9,12 +9,10 @@
         <h4>Comments:</h4>
     </div>
 
-      <!-- {{comments.[2].body}} -->
-
     {{#each comments}}
         <div class="comment">
             <ul>
-                <li>{{body}}&nbsp;&nbsp;<a href="" data-toggle="modal" data-target="#basicModal">Edit</a></li>
+                <li>{{body}}&nbsp;&nbsp;<a href="{{post_id}}/comments/edit/{{commentID}}" data-toggle="modal" data-target="#basicModal">Edit</a></li>
             </ul>
         </div>
         <input value="{{commentID}}" type="text" name="commentID"></input>
@@ -24,7 +22,7 @@
     {{/each}}
 </div>
 
-<div class="modal modalPosition" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<div class="modal fade modalPosition" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-content">
       {{> modal}}
 

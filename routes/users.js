@@ -8,13 +8,11 @@ var queries = require("../database/queries")
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    // var userName = req.user.nickname
 
     queries.Users({username: req.user.nickname})
         .then(function(){
             res.render('users', { title: 'Blog', user: req.user})
         })
-    // console.log('User: ' + userName)
 });
 
 router.post('/submit', function(req, res, next) {
@@ -24,14 +22,8 @@ router.post('/submit', function(req, res, next) {
     var dt = datetime.create(Date.now())
     var postDate = dt.format('Y-m-d H:M')
 
-    console.log('Title: ',postTitle)
-    console.log('Entry: ', postEntry)
-    console.log('User: ', postUser)
-    console.log('Date: ', postDate)
-
     queries.User_Id({username: req.user.nickname})
         .then(function(data) {
-            console.log(data[0].uid)
             return queries.Posts({
                 title: postTitle,
                 post_body: postEntry,
@@ -41,7 +33,6 @@ router.post('/submit', function(req, res, next) {
         })
         .then(function(data) {
             res.redirect('/users/posts')
-            console.log("Hello")
         })
         .catch(function(err) {
             next(err)
@@ -64,7 +55,6 @@ router.get('/posts/:id', function(req, res, next) {
     var id = req.params.id
     queries.PostsById(id)
     .then(function(posts){
-      console.log("Post"+ id, posts[0])
       queries.CommentsByPostId(id)
       .then(function(comments) {
         console.log(comments)
@@ -82,10 +72,8 @@ router.get('/posts/:id', function(req, res, next) {
 router.get('/posts/:id/edit', function(req, res, next) {
     var id = req.params.id
 
-    // console.log('Post Id: ', id)
     queries.PostsById(id)
         .then(function(posts) {
-            // console.log(posts)
             res.render('edit_post', {
                 posts: posts
             })
@@ -100,25 +88,23 @@ router.post('/posts/:id/edit', function(req, res, next) {
     var postTitle = req.body.postTitle
     var postEntry = req.body.postEntry
 
-    // console.log('Post Id: ', typeof id)
     queries.EditPost(id, {
         title: postTitle,
         post_body: postEntry,
         })
         .then(function(data) {
             res.redirect('/users/posts')
-            console.log("Hello")
         })
         .catch(function(err) {
         next(err)
         })
 })
 
-router.get('/posts/comments/:id', function(req, res, next) {
+router.get('/posts/:id/comments/edit/:commentID', function(req, res, next) {
     var id = req.params.id
-
-    console.log('Comment Id or post Id?: ', id)
-    queries.CommentsById(id)
+    var commentID =  req.params.commentID
+    console.log('hello')
+    queries.CommentsById(commentID)
         .then(function(comments) {
             console.log(comments)
             res.render('modal', {
@@ -137,14 +123,8 @@ router.post('/submit', function(req, res, next) {
     var dt = datetime.create(Date.now())
     var postDate = dt.format('Y-m-d H:M')
 
-    console.log('Title: ',postTitle)
-    console.log('Entry: ', postEntry)
-    console.log('User: ', postUser)
-    console.log('Date: ', postDate)
-
     queries.User_Id({username: req.user.nickname})
         .then(function(data) {
-            console.log(data[0].uid)
             return queries.Posts({
                 title: postTitle,
                 post_body: postEntry,
@@ -154,7 +134,6 @@ router.post('/submit', function(req, res, next) {
         })
         .then(function(data) {
             res.redirect('/users/posts')
-            console.log("Hello")
         })
         .catch(function(err) {
             next(err)
@@ -165,8 +144,6 @@ router.post('/posts', function(req, res, next) {
     var commentEntry = req.body.commentEntry
     var dt = datetime.create(Date.now())
     var postDate = dt.format('Y-m-d H:M')
-    console.log('Comment: ',commentEntry)
-    console.log('Date: ', postDate)
 
     queries.User_Id({username: req.user.nickname})
         .then(function(data) {

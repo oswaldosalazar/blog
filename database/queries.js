@@ -34,7 +34,7 @@ module.exports = {
         return knex('comments').insert(data)
     },
     CommentsByPostId: function(postID) {
-        return knex('comments').innerJoin('posts','posts.id', 'comments.post_id').where('post_id', postID).select('comments.id AS commentID', 'comments.comment_body AS body' )
+        return knex('comments').innerJoin('posts','posts.id', 'comments.post_id').where('post_id', postID).select('comments.id AS commentID', 'comments.comment_body AS body', 'post_id' )
     },
     CommentsById: function(commentID) {
         return knex('comments').where('comments.id', commentID)
