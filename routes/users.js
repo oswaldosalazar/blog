@@ -57,16 +57,15 @@ router.get('/posts/:id', function(req, res, next) {
     .then(function(posts){
       queries.CommentsByPostId(id)
       .then(function(comments) {
-        console.log(comments)
         res.render('comments', {
           posts: posts[0],
           comments: comments
         })
       })
     })
-        .catch(function(err) {
-        next(err)
-        })
+    .catch(function(err) {
+    next(err)
+    })
 })
 
 router.get('/posts/:id/edit', function(req, res, next) {
@@ -103,12 +102,12 @@ router.post('/posts/:id/edit', function(req, res, next) {
 router.get('/posts/:id/comments/edit/:commentID', function(req, res, next) {
     var id = req.params.id
     var commentID =  req.params.commentID
-    console.log('hello')
+    console.log('commentID: ', commentID)
     queries.CommentsById(commentID)
         .then(function(comments) {
             console.log(comments)
-            res.render('modal', {
-                comments: comments
+            res.render('partials/modal', {
+              comments: comments[0]
             })
         })
         .catch(function(err) {

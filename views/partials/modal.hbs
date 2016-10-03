@@ -1,27 +1,24 @@
 <div class="modal-header">
-    <h6 class="modal-title" id="myModalLabel">Comment on Post {{post_id}}</h6>
+    <h6 class="modal-title" id="myModalLabel">Comment on Post {{comments.post_id}}</h6>
 </div>
 
 <div class="modal-body">
     <div>
-        <h5>Edit</h5>
+        <h5>Edit comment {{comments.commentID}}</h5>
     </div>
     <form action="/users/posts" method="post" class="form-horizontal">
         <fieldset>
             <div class="form-group">
                 <label for="textArea" class="col-lg-2 control-label">Comment</label>
                 <div class="col-lg-10">
-                    <textarea class="form-control" rows="3" id="textArea" name="commentEntry" value="{{comment_body}}"></textarea>
-                    <input value="{{id}}" type="text" name="commentID"></input>
+                    <textarea class="form-control" rows="3" id="textArea" name="commentEntry" value="">{{comments.body}}</textarea>
+                    <input value="{{comments.commentID}}" type="hidden" name="commentID"></input>
                 </div>
             </div>
             <div class="form-group modal-footer">
                 <button type="button" class="btn btn-xs" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-xs">Save</button>
             </div>
-            <p>
-              {{comments}}
-            </p>
         </fieldset>
     </form>
 </div>
