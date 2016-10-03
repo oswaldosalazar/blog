@@ -12,17 +12,17 @@
     {{#each comments}}
         <div class="comment">
             <ul>
-                <li>{{body}}&nbsp;&nbsp;<a href="{{post_id}}/comments/edit/{{commentID}}" data-toggle="modal" data-target="#basicModal">Edit</a></li>
+                <li>{{body}}&nbsp;&nbsp;<a href="{{post_id}}/comments/edit/{{commentID}}" data-toggle="modal" data-target="#basicModalEdit">Edit</a></li>
             </ul>
         </div>
-        <input value="{{commentID}}" type="text" name="commentID"></input>
+        <input value="{{commentID}}" type="hidden" name="commentID"></input>
     {{else}}
         <br>
         <p class="empty">No comments on this log entry yet.</p>
     {{/each}}
 </div>
 
-<div class="modal fade modalPosition" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<div class="modal fade modalPosition" id="basicModalEdit" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-content">
       {{> modal}}
 

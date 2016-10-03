@@ -38,5 +38,8 @@ module.exports = {
     },
     CommentsById: function(commentID) {
         return knex('comments').where('comments.id', commentID).select('comments.id AS commentID', 'comments.comment_body AS body', 'post_id' )
+    },
+    CommentsEdit: function(commentID, commentEntry) {
+        return knex('comments').where('comments.id', commentID).update(commentEntry)
     }
 }

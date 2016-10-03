@@ -6,13 +6,14 @@
     <div>
         <h5>Edit comment {{comments.commentID}}</h5>
     </div>
-    <form action="/users/posts" method="post" class="form-horizontal">
+    <form action="/users/post/comment/edit" method="post" class="form-horizontal">
         <fieldset>
             <div class="form-group">
                 <label for="textArea" class="col-lg-2 control-label">Comment</label>
                 <div class="col-lg-10">
                     <textarea class="form-control" rows="3" id="textArea" name="commentEntry" value="">{{comments.body}}</textarea>
                     <input value="{{comments.commentID}}" type="hidden" name="commentID"></input>
+                    <input value="{{comments.post_id}}" type="hidden" name="postId"></input>
                 </div>
             </div>
             <div class="form-group modal-footer">
