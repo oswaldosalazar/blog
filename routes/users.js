@@ -99,7 +99,7 @@ router.post('/posts/:id/edit', function(req, res, next) {
         })
 })
 
-router.get('/posts/:id/comments/edit/:commentID', function(req, res, next) {
+router.get('/posts/:id/comments/:commentID/edit', function(req, res, next) {
     var id = req.params.id
     var commentID =  req.params.commentID
 
@@ -174,6 +174,26 @@ router.post('/posts', function(req, res, next) {
         .catch(function(err) {
             next(err)
         })
+})
+
+router.get('/posts/:id/delete', function(req, res, next) {
+    var post_id = parseInt(req.params.id, 10)
+    console.log('post_id', post_id)
+    queries.deleteCommentsOnPost(post_id)
+    .then(function (post_id) {
+        return queries.deletePost(post_id)
+        .then(function() {
+            res.redirect('/users/posts')
+        })
+    })
+})
+
+router.get('/posts/:id/comments/:commentID/delete', function(req, res, next) {
+    post_id = req.params.id
+    queries.deleteComment(req.params.commentID)
+    .then(function() {
+        res.redirect('/users/posts/' + post_id)
+    })
 })
 
 module.exports = router;

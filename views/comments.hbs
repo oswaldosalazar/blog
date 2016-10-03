@@ -16,7 +16,7 @@
     {{#each comments}}
         <div class="comment">
             <ul>
-                <li>{{body}}&nbsp;&nbsp;<a href="{{post_id}}/comments/edit/{{commentID}}" data-toggle="modal" data-target="#basicModalEdit">Edit</a></li>
+                <li>{{body}}&nbsp;&nbsp;<a href="{{post_id}}/comments/{{commentID}}/edit" data-toggle="modal" data-target="#basicModalEdit">Edit/</a><a href="{{post_id}}/comments/{{commentID}}/delete">/Delete</a></li>
             </ul>
         </div>
         <input value="{{commentID}}" type="hidden" name="commentID"></input>

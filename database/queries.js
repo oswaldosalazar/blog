@@ -41,5 +41,14 @@ module.exports = {
     },
     CommentsEdit: function(commentID, commentEntry) {
         return knex('comments').where('comments.id', commentID).update(commentEntry)
+    },
+    deletePost: function(postID) {
+        return knex('posts').where('posts.id',postID).del()
+    },
+    deleteComment: function(commentID) {
+        return knex('comments').where('comments.id', commentID).del()
+    },
+    deleteCommentsOnPost: function(postID) {
+        return knex ('comments').where('comments.post_id', postID).del()
     }
 }
