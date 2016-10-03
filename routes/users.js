@@ -102,7 +102,7 @@ router.post('/posts/:id/edit', function(req, res, next) {
 router.get('/posts/:id/comments/edit/:commentID', function(req, res, next) {
     var id = req.params.id
     var commentID =  req.params.commentID
-    console.log('commentID: ', commentID)
+
     queries.CommentsById(commentID)
         .then(function(comments) {
             res.render('partials/modal', {
@@ -118,15 +118,11 @@ router.post('/post/comment/edit', function(req, res, next) {
     var commentID = parseInt(req.body.commentID, 10)
     var commentEntry = req.body.commentEntry
     var post_id = parseInt(req.body.postId, 10)
-    var dt = datetime.create(Date.now())
-    var postDate = dt.format('Y-m-d H:M')
-    console.log('commentID: ', commentID, typeof(commentID))
+
     queries.CommentsEdit(commentID, {
         comment_body: commentEntry,
-        postDate: postDate
         })
-        .then(function(data) {
-            console.log(data)
+        .then(function() {
             res.redirect('/users/posts/' + post_id)
         })
         .catch(function(err) {

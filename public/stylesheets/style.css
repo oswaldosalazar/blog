@@ -23,12 +23,15 @@ body {
 }
 
 .blogPost {
-    background-image: none;
-    padding: 50px;
+    padding: 20px 50px 50px 50px;
+}
+
+.blogComments {
+    padding: 20px 50px 50px 50px;
 }
 
 .post {
-    padding: 20px 0 20px 0px;
+    padding-bottom: 30px;
 }
 
 .comment {
@@ -49,6 +52,8 @@ body {
 
 .modalPosition {
     top:10%;
-    /*right:50%;*/
-    /*outline: none;*/
+}
+
+.backbtn {
+    padding: 70px 0 0 50px;
 }
