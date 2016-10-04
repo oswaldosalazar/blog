@@ -16,6 +16,7 @@
     "hbs": "~4.0.0",
     "knex": "^0.11.10",
     "morgan": "~1.7.0",
+    "node-datetime": "^1.0.0",
     "nodemon": "^1.10.2",
     "passport": "^0.3.2",
     "passport-auth0": "^0.5.2",
