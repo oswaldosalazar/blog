@@ -19,6 +19,7 @@ var app = express();
 
 // view engine setup
 
+
 hbs.registerPartials(__dirname + '/views/partials');
 hbs.registerPartial('modal',
     fs.readFileSync(__dirname + '/views/partials/modal.hbs', 'utf8'));
